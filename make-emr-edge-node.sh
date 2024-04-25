@@ -115,7 +115,7 @@ makeDir() {
 }
 
 makeJdk() {
-  yum -y install java
+  yum -y install java-17
   tee /etc/profile.d/java.sh <<EOF
 export JAVA_HOME=/etc/alternatives/jre
 export PATH=$JAVA_HOME/bin:$PATH
@@ -184,6 +184,8 @@ makeFlinkClient() {
   rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=10 -i $pemFile" hadoop@$masterNode:'/etc/flink/conf/*' /etc/flink/conf
   mkdir -p /var/log/flink
   chmod 777 -R /var/log/flink
+  mkdir -p /var/lib/flink/yarn
+  chmod 777 -R /var/lib/flink/yarn
 }
 
 case $1 in
