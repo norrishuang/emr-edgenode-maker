@@ -40,6 +40,10 @@ showUsage() {
   echo "# 说明：制作sqoop客户端"
   echo "$0 make-sqoop-client"
   echo
+
+  echo "# 说明：制作flink客户端"
+  echo "$0 make-sqoop-client"
+  echo
 }
 
 printHeading() {
@@ -56,6 +60,7 @@ init() {
   chmod 600 "$pemFile"
   makeYumRepo "$pemFile" "$masterNode"
   yum -y install vim wget zip unzip expect tree htop iotop nc telnet lrzsz openssl-devel emrfs emr-ddb emr-goodies emr-kinesis emr-s3-select emr-scripts emr-puppet
+  sudo amazon-linux-extras install epel
   makeHadoopUser "$pemFile"
   makeDir
   makeJdk
@@ -110,7 +115,7 @@ makeDir() {
 }
 
 makeJdk() {
-  yum -y install java-1.8.0-openjdk
+  yum -y install java
   tee /etc/profile.d/java.sh <<EOF
 export JAVA_HOME=/etc/alternatives/jre
 export PATH=$JAVA_HOME/bin:$PATH
@@ -171,6 +176,16 @@ makeOozieClient() {
   chmod 777 -R /var/log/oozie
 }
 
+
+makeFlinkClient() {
+  pemFile="$1"
+  masterNode="$2"
+  yum -y install flink
+  rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=10 -i $pemFile" hadoop@$masterNode:'/etc/flink/conf/*' /etc/hive/conf
+  mkdir -p /var/log/flink
+  chmod 777 -R /var/log/flink
+}
+
 case $1 in
   init)
     shift
@@ -191,6 +206,10 @@ case $1 in
   make-spark-client)
     shift
     makeSparkClient "$@"
+    ;;
+  make-flink-client)
+    shift
+    makeFlinkClient "$@"
     ;;
   make-hbase-client)
     shift

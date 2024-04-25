@@ -25,6 +25,9 @@ sudo ./make-emr-edge-node.sh help
 # 说明：制作spark客户端
 ./make-emr-edge-node.sh make-spark-client [PEM_FILE_PATH] [MASTER_NODE_IP]
 
+# 说明：制作flink客户端
+./make-emr-edge-node.sh make-flink-client [PEM_FILE_PATH] [MASTER_NODE_IP]
+
 # 说明：制作hive客户端
 ./make-emr-edge-node.sh make-hive-client [PEM_FILE_PATH] [MASTER_NODE_IP]
 
