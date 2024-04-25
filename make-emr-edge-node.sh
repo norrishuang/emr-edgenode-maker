@@ -181,7 +181,7 @@ makeFlinkClient() {
   pemFile="$1"
   masterNode="$2"
   yum -y install flink
-  rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=10 -i $pemFile" hadoop@$masterNode:'/etc/flink/conf/*' /etc/hive/conf
+  rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=10 -i $pemFile" hadoop@$masterNode:'/etc/flink/conf/*' /etc/flink/conf
   mkdir -p /var/log/flink
   chmod 777 -R /var/log/flink
 }
