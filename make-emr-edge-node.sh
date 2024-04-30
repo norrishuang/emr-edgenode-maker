@@ -42,7 +42,7 @@ showUsage() {
   echo
 
   echo "# 说明：制作flink客户端"
-  echo "$0 make-sqoop-client"
+  echo "$0 make-flink-client"
   echo
 }
 
@@ -115,7 +115,7 @@ makeDir() {
 }
 
 makeJdk() {
-  yum -y install java-17
+  yum -y install java-1.8.0-openjdk
   tee /etc/profile.d/java.sh <<EOF
 export JAVA_HOME=/etc/alternatives/jre
 export PATH=$JAVA_HOME/bin:$PATH
