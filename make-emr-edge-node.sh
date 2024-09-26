@@ -143,6 +143,8 @@ makeHiveClient() {
 makeSparkClient() {
   pemFile="$1"
   masterNode="$2"
+  mkdir -p /etc/hudi/conf/
+  chmod 777 -R /etc/hudi/conf/
   yum -y install spark-core spark-python spark-datanucleus
   rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=10 -i $pemFile" hadoop@$masterNode:'/etc/spark/conf/*' /etc/spark/conf
   rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=10 -i $pemFile" hadoop@$masterNode:'/etc/hudi/conf/*' /etc/hudi/conf
