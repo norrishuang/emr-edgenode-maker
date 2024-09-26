@@ -145,6 +145,8 @@ makeSparkClient() {
   masterNode="$2"
   yum -y install spark-core spark-python spark-datanucleus
   rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=10 -i $pemFile" hadoop@$masterNode:'/etc/spark/conf/*' /etc/spark/conf
+  rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=10 -i $pemFile" hadoop@$masterNode:'/etc/hudi/conf/*' /etc/hudi/conf
+
   echo "spark.hadoop.yarn.timeline-service.enabled false" | tee -a /etc/spark/conf/spark-defaults.conf
   mkdir -p /var/log/spark/user
   chmod 777 -R /var/log/spark/user
