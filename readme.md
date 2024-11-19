@@ -3,6 +3,9 @@
 
 **关于该脚本的详细介绍，请参考作者博客文章：[如何制作一个AWS EMR客户端节点（ Client Node / Edge Node / Gateway Node )](https://laurence.blog.csdn.net/article/details/108529087)**
 
+> 注意边缘节点的操作系统需要与 EMR Master 节点的操作系统保持一致
+Amazon Linux 2 (AL2 for EMR 5.x and 6.x, AL2023 for EMR 7.x) 
+
 检出后需要先给shell文件`make-emr-edge-node.sh`添加可执行属性：
 
 ```bash
