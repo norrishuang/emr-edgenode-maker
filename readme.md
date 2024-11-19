@@ -19,26 +19,29 @@ sudo ./make-emr-edge-node.sh help
 
 ==================  [ MAKE EMR EDGE NODE SCRIPTS ] USAGE  ==================
 
+export PEM_FILE_PATH=~/<my-key.pem>
+export MASTER_NODE_IP=<hostname>
+
 # 说明：初始化（只需执行一次）, 安装基础软件包，emr基础app, 配置emr repo, 创建hadoop用户, 创建必要文件夹
-./make-emr-edge-node.sh init [PEM_FILE_PATH] [MASTER_NODE_IP]
+./make-emr-edge-node.sh init $PEM_FILE_PATH $MASTER_NODE_IP
 
 # 说明：制作hadoop客户端
-./make-emr-edge-node.sh make-hadoop-client [PEM_FILE_PATH] [MASTER_NODE_IP]
+./make-emr-edge-node.sh make-hadoop-client $PEM_FILE_PATH $MASTER_NODE_IP
 
 # 说明：制作spark客户端
-./make-emr-edge-node.sh make-spark-client [PEM_FILE_PATH] [MASTER_NODE_IP]
+./make-emr-edge-node.sh make-spark-client $PEM_FILE_PATH $MASTER_NODE_IP
 
 # 说明：制作flink客户端
-./make-emr-edge-node.sh make-flink-client [PEM_FILE_PATH] [MASTER_NODE_IP]
+./make-emr-edge-node.sh make-flink-client $PEM_FILE_PATH $MASTER_NODE_IP
 
 # 说明：制作hive客户端
-./make-emr-edge-node.sh make-hive-client [PEM_FILE_PATH] [MASTER_NODE_IP]
+./make-emr-edge-node.sh make-hive-client $PEM_FILE_PATH $MASTER_NODE_IP
 
 # 说明：制作hbase客户端
-./make-emr-edge-node.sh make-hbase-client [PEM_FILE_PATH] [MASTER_NODE_IP]
+./make-emr-edge-node.sh make-hbase-client $PEM_FILE_PATH $MASTER_NODE_IP
 
 # 说明：制作oozie客户端
-./make-emr-edge-node.sh make-oozie-client [PEM_FILE_PATH] [MASTER_NODE_IP]
+./make-emr-edge-node.sh make-oozie-client $PEM_FILE_PATH $MASTER_NODE_IP
 
 # 说明：制作hudi客户端
 ./make-emr-edge-node.sh make-hudi-client
